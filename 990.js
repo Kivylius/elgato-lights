@@ -384,7 +384,7 @@ function _ts_generator(thisArg, body) {
 }();
 var App = function(param) {
     var config = param.config, setConfig = param.setConfig;
-    var _useElgatos = (0, _hooks_useElgatos__WEBPACK_IMPORTED_MODULE_4__.useElgatos)(), isLoading = _useElgatos.isLoading, elgatos = _useElgatos.elgatos, tryGetAllElgatoLights = _useElgatos.tryGetAllElgatoLights;
+    var _useElgatos = (0, _hooks_useElgatos__WEBPACK_IMPORTED_MODULE_4__.useElgatos)(config), isLoading = _useElgatos.isLoading, elgatos = _useElgatos.elgatos, tryGetAllElgatoLights = _useElgatos.tryGetAllElgatoLights;
     var onChange = function(e) {
         return setConfig(_object_spread_props(_object_spread({}, config), _define_property({}, e.target.name, e.target.value)));
     };
