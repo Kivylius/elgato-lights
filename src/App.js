@@ -34,7 +34,7 @@ export const onPress = async (params) => {
 };
 
 const App = ({ config, setConfig }) => {
-  const { isLoading, elgatos, tryGetAllElgatoLights } = useElgatos();
+  const { isLoading, elgatos, tryGetAllElgatoLights } = useElgatos(config);
 
   const onChange = (e) =>
     setConfig({ ...config, [e.target.name]: e.target.value });
