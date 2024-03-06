@@ -1,4 +1,4 @@
-(self['webpackChunkwebdeck_plugin_template'] = self['webpackChunkwebdeck_plugin_template'] || []).push([["512"], {
+(self['webpackChunkelgato_lights'] = self['webpackChunkelgato_lights'] || []).push([["512"], {
 "408": (function (__unused_webpack_module, exports) {
 /**
  * @license React

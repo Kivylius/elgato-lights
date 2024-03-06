@@ -3412,7 +3412,7 @@ __webpack_require__.d(exports, {
 	get: () => (__webpack_require__.getContainer),
 	init: () => (__webpack_require__.initContainer)
 });}),
-"511": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+"926": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */var _home_runner_work_elgato_lights_elgato_lights_node_modules_rspack_core_node_modules_module_federation_webpack_bundler_runtime_dist_index_cjs_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/@rspack/core/node_modules/@module-federation/webpack-bundler-runtime/dist/index.cjs.js */"426");
@@ -3420,7 +3420,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const __module_federation_runtime_plugins__ = [];
 const __module_federation_remote_infos__ = {};
-const __module_federation_container_name__ = "webdeck_plugin_template";
+const __module_federation_container_name__ = "elgato_lights";
 var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
 if (__webpack_require__.initializeSharingData || __webpack_require__.initializeExposesData) {
     const override = (obj, key, value)=>{
@@ -3606,7 +3606,7 @@ __webpack_require__.e = function (chunkId) {
 }();
 // webpack/runtime/load_chunk_with_block
 !function() {
-var map = {"112@": ["987"], "330@": ["512"], "358@./Plugin": ["343", "990"], "405@": ["512"], "537@0:21": ["343"], "640@": ["987", "343"]};
+var map = {"112@": ["987"], "330@": ["512"], "358@./Plugin": ["343", "990"], "405@": ["512"], "537@0:21": ["343", "990"], "640@": ["987", "343"]};
 
 __webpack_require__.el = function(module) {
   var chunkIds = map[module];
@@ -3663,7 +3663,7 @@ __webpack_require__.n = function (module) {
 !function() {
 
 __webpack_require__.S = {};
-__webpack_require__.initializeSharingData = { scopeToSharingDataMapping: { "default": [{ name: "react-dom", version: "18.2.0", factory: function() { return __webpack_require__.el("640@").then(function() { return function() { return __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/react-dom/index.js */"935"); }; }); }, eager: 0 }, { name: "react", version: "18.2.0", factory: function() { return __webpack_require__.el("405@").then(function() { return function() { return __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/react/index.js */"294"); }; }); }, eager: 0 }] }, uniqueName: "webdeck-plugin-template" };
+__webpack_require__.initializeSharingData = { scopeToSharingDataMapping: { "default": [{ name: "react-dom", version: "18.2.0", factory: function() { return __webpack_require__.el("640@").then(function() { return function() { return __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/react-dom/index.js */"935"); }; }); }, eager: 0 }, { name: "react", version: "18.2.0", factory: function() { return __webpack_require__.el("405@").then(function() { return function() { return __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/react/index.js */"294"); }; }); }, eager: 0 }] }, uniqueName: "elgato-lights" };
 __webpack_require__.I = function() { throw new Error("should have __webpack_require__.I") }
 
 }();
@@ -3693,7 +3693,7 @@ __webpack_require__.I = function() { throw new Error("should have __webpack_requ
 !function() {
 var inProgress = {};
 
-var dataWebpackPrefix = "webdeck-plugin-template:";
+var dataWebpackPrefix = "elgato-lights:";
 // loadScript function to load a script via script tag
 __webpack_require__.l = function (url, done, key, chunkId) {
 	if (inProgress[url]) {
@@ -3766,7 +3766,7 @@ __webpack_require__.g = (function () {
 // webpack/runtime/consumes_loading
 !function() {
 
-__webpack_require__.consumesLoadingData = { chunkMapping: {"987":[],"990":[],"512":[],"343":["330"]}, moduleIdToConsumeDataMapping: { "330": { shareScope: "default", shareKey: "react", import: "react", requiredVersion: "^18.2.0", strictVersion: false, singleton: true, eager: false, fallback: function() { return __webpack_require__.el("330@").then(function() { return function() { return __webpack_require__(/*! react */"294"); }; }); } } }, initialConsumes: [] };
+__webpack_require__.consumesLoadingData = { chunkMapping: {"987":[],"990":[],"512":[],"343":["330"]}, moduleIdToConsumeDataMapping: { "330": { shareScope: "default", shareKey: "react", import: "react", requiredVersion: "^18.2.0", strictVersion: true, singleton: false, eager: false, fallback: function() { return __webpack_require__.el("330@").then(function() { return function() { return __webpack_require__(/*! react */"294"); }; }); } } }, initialConsumes: [] };
 __webpack_require__.f.consumes = function() { throw new Error("should have __webpack_require__.f.consumes") }
 }();
 // webpack/runtime/jsonp_chunk_loading
@@ -3775,7 +3775,7 @@ __webpack_require__.f.consumes = function() { throw new Error("should have __web
       // object to store loaded and loading chunks
       // undefined = chunk not loaded, null = chunk preloaded/prefetched
       // [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-      var installedChunks = {"189": 0,};
+      var installedChunks = {"807": 0,};
       
         __webpack_require__.f.j = function (chunkId, promises) {
           // JSONP chunk loading for javascript
@@ -3862,7 +3862,7 @@ var webpackJsonpCallback = function (parentChunkLoadingFunction, data) {
 	
 };
 
-var chunkLoadingGlobal = self["webpackChunkwebdeck_plugin_template"] = self["webpackChunkwebdeck_plugin_template"] || [];
+var chunkLoadingGlobal = self["webpackChunkelgato_lights"] = self["webpackChunkelgato_lights"] || [];
 chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 chunkLoadingGlobal.push = webpackJsonpCallback.bind(
 	null,
@@ -3907,8 +3907,8 @@ __webpack_require__.getContainer = function() { throw new Error("should have __w
     __webpack_require__.p = scriptUrl
     
 }();
-__webpack_require__("511");
-var __webpack_exports__ = __webpack_require__("358");self.webdeck_plugin_template = __webpack_exports__;
+__webpack_require__("926");
+var __webpack_exports__ = __webpack_require__("358");self.elgato_lights = __webpack_exports__;
 
 })()
 
