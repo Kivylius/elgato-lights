@@ -302,12 +302,13 @@ function _ts_generator(thisArg, body) {
 
  var onPress = function() {
     var _ref = _async_to_generator(function(params) {
-        var config, setIcon, elgatos, elgato, state, e;
+        var _params_extension, config, setIcon, elgatos, fetcher, elgato, state, e;
         return _ts_generator(this, function(_state) {
             switch(_state.label){
                 case 0:
                     config = params.config, setIcon = params.setIcon;
                     elgatos = (0, _utils_elgato__WEBPACK_IMPORTED_MODULE_3__.getElgatos)();
+                    fetcher = (params === null || params === void 0 ? void 0 : (_params_extension = params.extension) === null || _params_extension === void 0 ? void 0 : _params_extension.fetch) || fetch;
                     if (!config.light) return [
                         3,
                         9
@@ -315,7 +316,7 @@ function _ts_generator(thisArg, body) {
                     elgato = elgatos[config.light];
                     return [
                         4,
-                        (0, _utils_elgato__WEBPACK_IMPORTED_MODULE_3__.fetchElgatoState)(elgato.ip)
+                        (0, _utils_elgato__WEBPACK_IMPORTED_MODULE_3__.fetchElgatoState)(elgato.ip, fetcher)
                     ];
                 case 1:
                     state = _state.sent();
@@ -333,7 +334,7 @@ function _ts_generator(thisArg, body) {
                     ];
                     return [
                         4,
-                        (0, _utils_elgato__WEBPACK_IMPORTED_MODULE_3__.setElgatoOff)(elgato.ip)
+                        (0, _utils_elgato__WEBPACK_IMPORTED_MODULE_3__.setElgatoOff)(elgato.ip, fetcher)
                     ];
                 case 3:
                     _state.sent();
@@ -345,7 +346,7 @@ function _ts_generator(thisArg, body) {
                 case 4:
                     return [
                         4,
-                        (0, _utils_elgato__WEBPACK_IMPORTED_MODULE_3__.setElgatoOn)(elgato.ip)
+                        (0, _utils_elgato__WEBPACK_IMPORTED_MODULE_3__.setElgatoOn)(elgato.ip, fetcher)
                     ];
                 case 5:
                     _state.sent();
@@ -358,7 +359,7 @@ function _ts_generator(thisArg, body) {
                     ];
                 case 7:
                     e = _state.sent();
-                    console.log("elgato-ligtts error", e);
+                    console.log("elgato-ligts-plugin error", e);
                     return [
                         3,
                         8
@@ -389,35 +390,18 @@ var App = function(param) {
         return setConfig(_object_spread_props(_object_spread({}, config), _define_property({}, e.target.name, e.target.value)));
     };
     return /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "webdeck-plugin",
         style: {
-            borderRadius: "4px",
-            padding: "2em",
             backgroundColor: "orange",
             color: "white"
         },
         children: [
             /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
-                className: "pt",
+                className: "webdeck-title",
                 children: "Elgato Lights Plugin"
             }),
-            /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                children: [
-                    "This plugin required",
-                    " ",
-                    /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                        href: "https://superuser.com/a/1672733",
-                        children: "insecure content"
-                    }),
-                    " and",
-                    " ",
-                    /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                        href: "https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino",
-                        children: "cors unblock"
-                    })
-                ]
-            }),
             /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "setting",
+                className: "webdeck-setting",
                 children: [
                     /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
                         htmlFor: "light",
@@ -464,7 +448,7 @@ var App = function(param) {
                 ]
             }),
             /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "setting",
+                className: "webdeck-setting",
                 children: [
                     /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
                         htmlFor: "action",
@@ -483,7 +467,7 @@ var App = function(param) {
                 ]
             }),
             /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "setting",
+                className: "webdeck-setting",
                 children: [
                     /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
                         htmlFor: "gateway",
@@ -679,7 +663,8 @@ var _obj;
         icon: _utils_icons__WEBPACK_IMPORTED_MODULE_0__.PATHS.on
     }), _define_property(_obj, _utils_icons__WEBPACK_IMPORTED_MODULE_0__.Icons.OFF, {
         icon: _utils_icons__WEBPACK_IMPORTED_MODULE_0__.PATHS.off
-    }), _obj)
+    }), _obj),
+    extension_required: true
 };
 }),
 "780": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
@@ -867,8 +852,8 @@ var ELGATO_PORT = 9123;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(elgatos));
 };
  var fetchElgatoInfo = function() {
-    var _ref = _async_to_generator(function(ip) {
-        var path, response, data, e;
+    var _ref = _async_to_generator(function(ip, fetcher) {
+        var path, data, e;
         return _ts_generator(this, function(_state) {
             switch(_state.label){
                 case 0:
@@ -877,62 +862,51 @@ var ELGATO_PORT = 9123;
                 case 1:
                     _state.trys.push([
                         1,
-                        4,
+                        3,
                         ,
-                        5
+                        4
                     ]);
                     return [
                         4,
-                        fetch("http://".concat(ip, ":").concat(ELGATO_PORT, "/").concat(path))
+                        fetcher("http://".concat(ip, ":").concat(ELGATO_PORT, "/").concat(path))
                     ];
                 case 2:
-                    response = _state.sent();
-                    return [
-                        4,
-                        response.json()
-                    ];
-                case 3:
                     data = _state.sent();
+                    console.log("fetchElgatoInfo.response", data);
                     return [
                         2,
                         _object_spread_props(_object_spread({}, data), {
                             ip: ip
                         })
                     ];
-                case 4:
+                case 3:
                     e = _state.sent();
                     console.error(e);
                     return [
                         2
                     ];
-                case 5:
+                case 4:
                     return [
                         2
                     ];
             }
         });
     });
-    return function fetchElgatoInfo(ip) {
+    return function fetchElgatoInfo(ip, fetcher) {
         return _ref.apply(this, arguments);
     };
 }();
  var fetchElgatoState = function() {
-    var _ref = _async_to_generator(function(ip) {
-        var resp, data;
+    var _ref = _async_to_generator(function(ip, fetcher) {
+        var data;
         return _ts_generator(this, function(_state) {
             switch(_state.label){
                 case 0:
                     return [
                         4,
-                        fetch("http://".concat(ip, ":").concat(ELGATO_PORT, "/elgato/lights"))
+                        fetcher("http://".concat(ip, ":").concat(ELGATO_PORT, "/elgato/lights"))
                     ];
                 case 1:
-                    resp = _state.sent();
-                    return [
-                        4,
-                        resp.json()
-                    ];
-                case 2:
                     data = _state.sent();
                     return [
                         2,
@@ -941,19 +915,19 @@ var ELGATO_PORT = 9123;
             }
         });
     });
-    return function fetchElgatoState(ip) {
+    return function fetchElgatoState(ip, fetcher) {
         return _ref.apply(this, arguments);
     };
 }();
  var setElgatoOn = function() {
-    var _ref = _async_to_generator(function(ip) {
-        var a, d;
+    var _ref = _async_to_generator(function(ip, fetcher) {
+        var data;
         return _ts_generator(this, function(_state) {
             switch(_state.label){
                 case 0:
                     return [
                         4,
-                        fetch("http://".concat(ip, ":").concat(ELGATO_PORT, "/elgato/lights"), {
+                        fetcher("http://".concat(ip, ":").concat(ELGATO_PORT, "/elgato/lights"), {
                             method: "put",
                             body: JSON.stringify({
                                 lights: [
@@ -965,33 +939,27 @@ var ELGATO_PORT = 9123;
                         })
                     ];
                 case 1:
-                    a = _state.sent();
-                    return [
-                        4,
-                        a.json()
-                    ];
-                case 2:
-                    d = _state.sent();
+                    data = _state.sent();
                     return [
                         2,
-                        d
+                        data
                     ];
             }
         });
     });
-    return function setElgatoOn(ip) {
+    return function setElgatoOn(ip, fetcher) {
         return _ref.apply(this, arguments);
     };
 }();
  var setElgatoOff = function() {
-    var _ref = _async_to_generator(function(ip) {
-        var a, d;
+    var _ref = _async_to_generator(function(ip, fetcher) {
+        var data;
         return _ts_generator(this, function(_state) {
             switch(_state.label){
                 case 0:
                     return [
                         4,
-                        fetch("http://".concat(ip, ":").concat(ELGATO_PORT, "/elgato/lights"), {
+                        fetcher("http://".concat(ip, ":").concat(ELGATO_PORT, "/elgato/lights"), {
                             method: "put",
                             body: JSON.stringify({
                                 lights: [
@@ -1003,21 +971,15 @@ var ELGATO_PORT = 9123;
                         })
                     ];
                 case 1:
-                    a = _state.sent();
-                    return [
-                        4,
-                        a.json()
-                    ];
-                case 2:
-                    d = _state.sent();
+                    data = _state.sent();
                     return [
                         2,
-                        d
+                        data
                     ];
             }
         });
     });
-    return function setElgatoOff(ip) {
+    return function setElgatoOff(ip, fetcher) {
         return _ref.apply(this, arguments);
     };
 }();

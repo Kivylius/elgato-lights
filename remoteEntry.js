@@ -3606,7 +3606,7 @@ __webpack_require__.e = function (chunkId) {
 }();
 // webpack/runtime/load_chunk_with_block
 !function() {
-var map = {"112@": ["987"], "330@": ["512"], "358@./Plugin": ["343", "990"], "405@": ["512"], "537@0:21": ["343", "990"], "640@": ["987", "343"]};
+var map = {"112@": ["987"], "313@": ["512"], "330@": ["512"], "358@./Plugin": ["343", "990"], "43@": ["987", "343"], "537@0:21": ["343", "990"]};
 
 __webpack_require__.el = function(module) {
   var chunkIds = map[module];
@@ -3663,7 +3663,7 @@ __webpack_require__.n = function (module) {
 !function() {
 
 __webpack_require__.S = {};
-__webpack_require__.initializeSharingData = { scopeToSharingDataMapping: { "default": [{ name: "react-dom", version: "18.2.0", factory: function() { return __webpack_require__.el("640@").then(function() { return function() { return __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/react-dom/index.js */"935"); }; }); }, eager: 0 }, { name: "react", version: "18.2.0", factory: function() { return __webpack_require__.el("405@").then(function() { return function() { return __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/react/index.js */"294"); }; }); }, eager: 0 }] }, uniqueName: "elgato-lights" };
+__webpack_require__.initializeSharingData = { scopeToSharingDataMapping: { "default": [{ name: "react-dom", version: "18.3.1", factory: function() { return __webpack_require__.el("43@").then(function() { return function() { return __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/react-dom/index.js */"935"); }; }); }, eager: 0 }, { name: "react", version: "18.3.1", factory: function() { return __webpack_require__.el("313@").then(function() { return function() { return __webpack_require__(/*! /home/runner/work/elgato-lights/elgato-lights/node_modules/react/index.js */"294"); }; }); }, eager: 0 }] }, uniqueName: "elgato-lights" };
 __webpack_require__.I = function() { throw new Error("should have __webpack_require__.I") }
 
 }();
