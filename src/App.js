@@ -14,19 +14,20 @@ export { manifest } from "./manifest";
 export const onPress = async (params) => {
   const { config, setIcon } = params;
   const elgatos = getElgatos();
+  const fetcher = params?.extension?.fetch || fetch;
   if (config.light) {
     const elgato = elgatos[config.light];
-    const state = await fetchElgatoState(elgato.ip);
+    const state = await fetchElgatoState(elgato.ip, fetcher);
     try {
       if (state.lights[0].on) {
-        await setElgatoOff(elgato.ip);
+        await setElgatoOff(elgato.ip, fetcher);
         setIcon(Icons.OFF);
       } else {
-        await setElgatoOn(elgato.ip);
+        await setElgatoOn(elgato.ip, fetcher);
         setIcon(Icons.ON);
       }
     } catch (e) {
-      console.log("elgato-ligtts error", e);
+      console.log("elgato-ligts-plugin error", e);
     }
   } else {
     alert("please choose a light");
@@ -41,22 +42,14 @@ const App = ({ config, setConfig }) => {
 
   return (
     <div
+      className="webdeck-plugin"
       style={{
-        borderRadius: "4px",
-        padding: "2em",
         backgroundColor: "orange",
         color: "white",
       }}
     >
-      <h3 className="pt">Elgato Lights Plugin</h3>
-      <p>
-        This plugin required{" "}
-        <a href="https://superuser.com/a/1672733">insecure content</a> and{" "}
-        <a href="https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino">
-          cors unblock
-        </a>
-      </p>
-      <div className="setting">
+      <h3 className="webdeck-title">Elgato Lights Plugin</h3>
+      <div className="webdeck-setting">
         <label htmlFor="light">light: </label>
         <span>
           <select
@@ -82,7 +75,7 @@ const App = ({ config, setConfig }) => {
           </button>
         </span>
       </div>
-      <div className="setting">
+      <div className="webdeck-setting">
         <label htmlFor="action">action: </label>
         <select
           required
@@ -93,7 +86,7 @@ const App = ({ config, setConfig }) => {
           <option value="toggle">toggle (on/off)</option>
         </select>
       </div>
-      <div className="setting">
+      <div className="webdeck-setting">
         <label htmlFor="gateway">gateway: </label>
         <input
           type="text"

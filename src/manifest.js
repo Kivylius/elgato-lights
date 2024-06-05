@@ -12,4 +12,5 @@ export const manifest = {
       icon: PATHS.off,
     },
   },
+  extension_required: true,
 };

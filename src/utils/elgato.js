@@ -13,11 +13,11 @@ export const storeElgatos = (elgatos) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(elgatos));
 };
 
-export const fetchElgatoInfo = async (ip) => {
+export const fetchElgatoInfo = async (ip, fetcher) => {
   const path = "elgato/accessory-info";
   try {
-    const response = await fetch(`http://${ip}:${ELGATO_PORT}/${path}`);
-    const data = await response.json();
+    const data = await fetcher(`http://${ip}:${ELGATO_PORT}/${path}`);
+    console.log("fetchElgatoInfo.response", data);
     return { ...data, ip };
   } catch (e) {
     console.error(e);
@@ -25,26 +25,23 @@ export const fetchElgatoInfo = async (ip) => {
   }
 };
 
-export const fetchElgatoState = async (ip) => {
-  const resp = await fetch(`http://${ip}:${ELGATO_PORT}/elgato/lights`);
-  const data = await resp.json();
+export const fetchElgatoState = async (ip, fetcher) => {
+  const data = await fetcher(`http://${ip}:${ELGATO_PORT}/elgato/lights`);
   return data;
 };
 
-export const setElgatoOn = async (ip) => {
-  const a = await fetch(`http://${ip}:${ELGATO_PORT}/elgato/lights`, {
+export const setElgatoOn = async (ip, fetcher) => {
+  const data = await fetcher(`http://${ip}:${ELGATO_PORT}/elgato/lights`, {
     method: "put",
     body: JSON.stringify({ lights: [{ on: 1 }] }),
   });
-  const d = await a.json();
-  return d;
+  return data;
 };
 
-export const setElgatoOff = async (ip) => {
-  const a = await fetch(`http://${ip}:${ELGATO_PORT}/elgato/lights`, {
+export const setElgatoOff = async (ip, fetcher) => {
+  const data = await fetcher(`http://${ip}:${ELGATO_PORT}/elgato/lights`, {
     method: "put",
     body: JSON.stringify({ lights: [{ on: 0 }] }),
   });
-  const d = await a.json();
-  return d;
+  return data;
 };
