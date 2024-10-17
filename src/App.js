@@ -11,6 +11,14 @@ import { Icons } from "./utils/icons";
 
 export { manifest } from "./manifest";
 
+// tempory fetcher storage for in JSX fetcher,
+// hope fully this added in the app so we can have access
+window._fetcher = null;
+export const init = (params) => {
+  console.log("params5", params?.extension?.fetch);
+  window._fetcher = params?.extension?.fetch;
+};
+
 export const onPress = async (params) => {
   const { config, setIcon } = params;
   const elgatos = getElgatos();
@@ -34,7 +42,8 @@ export const onPress = async (params) => {
   }
 };
 
-const App = ({ config, setConfig }) => {
+const App = (props) => {
+  const { config, setConfig } = props;
   const { isLoading, elgatos, tryGetAllElgatoLights } = useElgatos(config);
 
   const onChange = (e) =>
@@ -64,9 +73,13 @@ const App = ({ config, setConfig }) => {
               select....
             </option>
             {Object.keys(elgatos).map((key) => (
-              <option key={key} value={elgatos[key].serialNumber}>
-                {elgatos[key].displayName || elgatos[key].productName} |{" "}
-                {elgatos[key].serialNumber.slice(0, 3)}
+              <option
+                key={key}
+                title={JSON.stringify(elgatos[key], null, 4)}
+                value={elgatos[key]?.serialNumber}
+              >
+                {elgatos[key]?.displayName || elgatos[key].productName} |{" "}
+                {elgatos[key]?.serialNumber?.slice(0, 3)}
               </option>
             ))}
           </select>

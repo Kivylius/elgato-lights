@@ -26,7 +26,7 @@ export const useElgatos = (config) => {
     });
     Promise.all(promises).then((all) => {
       all.forEach((item) => {
-        if (item) addElgato(item.serialNumber, item);
+        if (item?.serialNumber) addElgato(item.serialNumber, item);
       });
       setIsLoading(false);
     });

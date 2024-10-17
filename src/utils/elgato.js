@@ -15,8 +15,9 @@ export const storeElgatos = (elgatos) => {
 
 export const fetchElgatoInfo = async (ip, fetcher) => {
   const path = "elgato/accessory-info";
+  const _fetcher = fetcher || window._fetcher;
   try {
-    const data = await fetcher(`http://${ip}:${ELGATO_PORT}/${path}`);
+    const data = await _fetcher(`http://${ip}:${ELGATO_PORT}/${path}`);
     console.log("fetchElgatoInfo.response", data);
     return { ...data, ip };
   } catch (e) {
