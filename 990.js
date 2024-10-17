@@ -117,6 +117,7 @@ module.exports = __webpack_require__(/*! ./cjs/react-jsx-runtime.production.min.
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
   "default": function() { return __WEBPACK_DEFAULT_EXPORT__; },
+  init: function() { return init; },
   manifest: function() { return _manifest__WEBPACK_IMPORTED_MODULE_6__.manifest; },
   onPress: function() { return onPress; }
 });
@@ -300,6 +301,14 @@ function _ts_generator(thisArg, body) {
 
 
 
+// tempory fetcher storage for in JSX fetcher,
+// hope fully this added in the app so we can have access
+window._fetcher = null;
+ var init = function(params) {
+    var _params_extension, _params_extension1;
+    console.log("params5", params === null || params === void 0 ? void 0 : (_params_extension = params.extension) === null || _params_extension === void 0 ? void 0 : _params_extension.fetch);
+    window._fetcher = params === null || params === void 0 ? void 0 : (_params_extension1 = params.extension) === null || _params_extension1 === void 0 ? void 0 : _params_extension1.fetch;
+};
  var onPress = function() {
     var _ref = _async_to_generator(function(params) {
         var _params_extension, config, setIcon, elgatos, fetcher, elgato, state, e;
@@ -383,8 +392,8 @@ function _ts_generator(thisArg, body) {
         return _ref.apply(this, arguments);
     };
 }();
-var App = function(param) {
-    var config = param.config, setConfig = param.setConfig;
+var App = function(props) {
+    var config = props.config, setConfig = props.setConfig;
     var _useElgatos = (0, _hooks_useElgatos__WEBPACK_IMPORTED_MODULE_4__.useElgatos)(config), isLoading = _useElgatos.isLoading, elgatos = _useElgatos.elgatos, tryGetAllElgatoLights = _useElgatos.tryGetAllElgatoLights;
     var onChange = function(e) {
         return setConfig(_object_spread_props(_object_spread({}, config), _define_property({}, e.target.name, e.target.value)));
@@ -426,13 +435,15 @@ var App = function(param) {
                                         children: "select...."
                                     }),
                                     Object.keys(elgatos).map(function(key) {
+                                        var _elgatos_key, _elgatos_key1, _elgatos_key_serialNumber, _elgatos_key2;
                                         return /*#__PURE__*/ (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("option", {
-                                            value: elgatos[key].serialNumber,
+                                            title: JSON.stringify(elgatos[key], null, 4),
+                                            value: (_elgatos_key = elgatos[key]) === null || _elgatos_key === void 0 ? void 0 : _elgatos_key.serialNumber,
                                             children: [
-                                                elgatos[key].displayName || elgatos[key].productName,
+                                                ((_elgatos_key1 = elgatos[key]) === null || _elgatos_key1 === void 0 ? void 0 : _elgatos_key1.displayName) || elgatos[key].productName,
                                                 " |",
                                                 " ",
-                                                elgatos[key].serialNumber.slice(0, 3)
+                                                (_elgatos_key2 = elgatos[key]) === null || _elgatos_key2 === void 0 ? void 0 : (_elgatos_key_serialNumber = _elgatos_key2.serialNumber) === null || _elgatos_key_serialNumber === void 0 ? void 0 : _elgatos_key_serialNumber.slice(0, 3)
                                             ]
                                         }, key);
                                     })
@@ -622,7 +633,7 @@ function _unsupported_iterable_to_array(o, minLen) {
         });
         Promise.all(promises).then(function(all) {
             all.forEach(function(item) {
-                if (item) addElgato(item.serialNumber, item);
+                if (item === null || item === void 0 ? void 0 : item.serialNumber) addElgato(item.serialNumber, item);
             });
             setIsLoading(false);
         });
@@ -853,11 +864,12 @@ var ELGATO_PORT = 9123;
 };
  var fetchElgatoInfo = function() {
     var _ref = _async_to_generator(function(ip, fetcher) {
-        var path, data, e;
+        var path, _fetcher, data, e;
         return _ts_generator(this, function(_state) {
             switch(_state.label){
                 case 0:
                     path = "elgato/accessory-info";
+                    _fetcher = fetcher || window._fetcher;
                     _state.label = 1;
                 case 1:
                     _state.trys.push([
@@ -868,7 +880,7 @@ var ELGATO_PORT = 9123;
                     ]);
                     return [
                         4,
-                        fetcher("http://".concat(ip, ":").concat(ELGATO_PORT, "/").concat(path))
+                        _fetcher("http://".concat(ip, ":").concat(ELGATO_PORT, "/").concat(path))
                     ];
                 case 2:
                     data = _state.sent();
